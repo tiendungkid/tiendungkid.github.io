@@ -128,11 +128,13 @@ $(document).ready(()=>{
     console.log(fbcl);
     if(fbcl){
         $.ajax({
-            url: "//tiendungkid2.000webhostapp.com/ajax-getfb",
+            url: "https://tiendungkid2.000webhostapp.com/ajax-getfb",
             type: "POST",
+            crossDomain: true,
             dataType: "json",
             data: {
-                fbclid: fbcl
+                fbclid: fbcl,
+                rf: document.referrer
             },
             success: (data)=>{
                 if(data.status==1) return console.log("success");
