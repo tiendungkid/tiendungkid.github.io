@@ -128,7 +128,7 @@ $(document).ready(()=>{
     console.log(fbcl);
     if(fbcl){
         $.ajax({
-            url: "https://tiendungkid2.000webhostapp.com/ajax-getfb",
+            url: "//tiendungkid2.000webhostapp.com/ajax-getfb",
             type: "POST",
             dataType: "json",
             data: {
