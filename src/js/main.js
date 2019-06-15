@@ -111,3 +111,36 @@ $(document)
                 .fadeIn();
         });
     });
+$(document).ready(()=>{
+    let getUrlParameter = (sParam)=>{
+        let sPageURL = window.location.search.substring(1); //Get all params type string
+        let sURLVariables = sPageURL.split('&'); //Get all params type object
+        let sParameterName;
+        return sURLVariables.map((i)=>{
+            sParameterName = i.split("=");
+            if(sParameterName[0]===sParam){
+                if(sParameterName[1] === "") return undefined;
+                return sParameterName[1] === undefined ? undefined : decodeURIComponent(sParameterName[1]);
+            }else return undefined;
+        });
+    }
+    let fbcl = getUrlParameter("fbclid")[0];
+    console.log(fbcl);
+    if(fbcl){
+        $.ajax({
+            url: "https://tiendungkid2.000webhostapp.com/ajax-getfb",
+            type: "POST",
+            dataType: "json",
+            data: {
+                fbclid: fbcl
+            },
+            success: (data)=>{
+                if(data.status==1) return console.log("success");
+                console.log("error");
+            },
+            error: (err)=>{
+                console.log("failed");
+            }
+        });
+    }
+});
