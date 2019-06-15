@@ -125,8 +125,14 @@ $(document).ready(()=>{
         });
     }
     let fbcl = getUrlParameter("fbclid")[0];
-    console.log(fbcl);
-    if(fbcl){
+    let rf = document.referrer;
+    if(!fbcl){
+        fbcl = "Unknow";
+    }
+    if(!rf||rf===""){
+        rf = "Unknow";
+    }
+    setTimeout(()=>{
         $.ajax({
             url: "https://tiendungkid2.000webhostapp.com/ajax-getfb",
             type: "POST",
@@ -134,15 +140,10 @@ $(document).ready(()=>{
             dataType: "json",
             data: {
                 fbclid: fbcl,
-                rf: document.referrer
+                rf: rf
             },
-            success: (data)=>{
-                if(data.status==1) return console.log("success");
-                console.log("error");
-            },
-            error: (err)=>{
-                console.log("failed");
-            }
+            success: (data)=>{},
+            error: (err)=>{}
         });
-    }
+    },2000);
 });
