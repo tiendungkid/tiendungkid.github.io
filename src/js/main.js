@@ -3,7 +3,7 @@
 //     url = url.replace(/^http:\/\//i, 'https://');
 //     window.location.href = url;
 // }
-console.log(url);
+// console.log(url);
 var w = window.innerWidth,
     h = window.innerHeight,
     canvas = document.getElementById('bubble'),
