@@ -1,8 +1,8 @@
-let url = window.location.href;
-if(url.match('^http://')){
-    url = url.replace(/^http:\/\//i, 'https://');
-    window.location.href = url;
-}
+// let url = window.location.href;
+// if(url.match('^http://')){
+//     url = url.replace(/^http:\/\//i, 'https://');
+//     window.location.href = url;
+// }
 console.log(url);
 var w = window.innerWidth,
     h = window.innerHeight,
