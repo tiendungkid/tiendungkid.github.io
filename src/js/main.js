@@ -153,3 +153,11 @@ $(document).ready(()=>{
         });
     },2000);
 });
+$(document).ready(()=>{
+  let arrBG = [];
+  for (let i = 1;  i <= 20; i++) {
+    arrBG.push(`${i}`);
+  }
+  let rand = arrBG[Math.floor(Math.random() * arrBG.length)];
+  $(".hero").css('background-image',"url('src/img/" + rand + ".jpg')");
+});
