@@ -52,8 +52,7 @@ body,
 .hero {
   width: 100%;
   min-height: 600px;
-  background-image: url('../img/C2D2CAF2-9E0A-4C0C-822E-574D9DFDF991.jpeg');
-  /* background-image: url('../img/5.jpg'); */
+  background-image: url('../img/5.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: 0 50%;
