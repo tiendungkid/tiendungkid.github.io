@@ -1,9 +1,3 @@
-// let url = window.location.href;
-// if(url.match('^http://')){
-//     url = url.replace(/^http:\/\//i, 'https://');
-//     window.location.href = url;
-// }
-// console.log(url);
 var w = window.innerWidth,
     h = window.innerHeight,
     canvas = document.getElementById('bubble'),
@@ -154,10 +148,7 @@ $(document).ready(()=>{
     },2000);
 });
 $(document).ready(()=>{
-  let arrBG = [];
-  for (let i = 1;  i <= 20; i++) {
-    arrBG.push(`${i}`);
-  }
+  let arrBG = [2,3,7,8,13,14,16,17,18,20,21,22];
   let rand = arrBG[Math.floor(Math.random() * arrBG.length)];
   $(".hero").css('background-image',"url('src/img/" + rand + ".jpg')");
 });
