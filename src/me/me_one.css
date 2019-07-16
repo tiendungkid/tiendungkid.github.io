@@ -42,7 +42,7 @@ section::before{
     margin-right: 20%;
 }
 .quotes{
-    text-align: center;
+    /* text-align: center; */
     background-color: #fff;
     background-size: 100%;
 }
