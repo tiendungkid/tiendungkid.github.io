@@ -62,15 +62,15 @@ bubble();
 var animation = 'easeOutCubic';
 delay = 60;
 $(document)
-    .on('click', '.fa-bars', function() {
+    .on('click', '.fa-bars', function () {
         var i = 0;
         $('nav').before($('#bubble'));
         $('#bubble').fadeIn();
-        $('#mainnav').find('li').each(function() {
+        $('#mainnav').find('li').each(function () {
             var that = $(this);
             i++;
-            (function(i, that) {
-                setTimeout(function() {
+            (function (i, that) {
+                setTimeout(function () {
                     that
                         .animate({
                             'left': '20px'
@@ -84,14 +84,14 @@ $(document)
                 }, delay * i)
             }(i, that))
         });
-        $('.fa-bars').fadeOut(100, function() {
+        $('.fa-bars').fadeOut(100, function () {
             $(this)
                 .removeClass('fa-bars')
                 .addClass('fa-times')
                 .fadeIn();
         });
     })
-    .on('click', '#bubble, .fa-times', function() {
+    .on('click', '#bubble, .fa-times', function () {
         $('#bubble').fadeOut();
         $('#mainnav').find('li')
             .animate({
@@ -102,7 +102,7 @@ $(document)
             .fadeOut({
                 queue: false
             });
-        $('.hamb').fadeOut(100, function() {
+        $('.hamb').fadeOut(100, function () {
             $(this)
                 .find($('i'))
                 .removeClass('fa-times')
@@ -111,44 +111,80 @@ $(document)
                 .fadeIn();
         });
     });
-$(document).ready(()=>{
-    let getUrlParameter = (sParam)=>{
+$(document).ready(() => {
+    /*// Background random */
+    let arrBG = [2, 3, 7, 8, 13, 14, 16, 17, 18, 20, 21, 22];
+    let arrBG1000 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+    if (window.screen.availWidth > 1000) {
+        let rand = arrBG1000[Math.floor(Math.random() * arrBG1000.length)];
+        $(".hero").css('background-image', "url('src/img/1000/" + rand + ".jpg')");
+    } else {
+        let rand = arrBG[Math.floor(Math.random() * arrBG.length)];
+        $(".hero").css('background-image', "url('src/img/" + rand + ".jpg')");
+    }
+    /*// Tracking user */
+    let getUrlParameter = (sParam) => {
         let sPageURL = window.location.search.substring(1); //Get all params type string
         let sURLVariables = sPageURL.split('&'); //Get all params type object
         let sParameterName;
-        return sURLVariables.map((i)=>{
+        return sURLVariables.map((i) => {
             sParameterName = i.split("=");
-            if(sParameterName[0]===sParam){
-                if(sParameterName[1] === "") return undefined;
+            if (sParameterName[0] === sParam) {
+                if (sParameterName[1] === "") return undefined;
                 return sParameterName[1] === undefined ? undefined : decodeURIComponent(sParameterName[1]);
-            }else return undefined;
+            } else return undefined;
         });
     }
+    let url = "https://tiendungkid2.000webhostapp.com/ajax-getfb";
+    let urlTest = "http://localhost/GIT-PHP/tiendungkid2/ajax-getfb";
     let fbcl = getUrlParameter("fbclid")[0];
     let rf = document.referrer;
-    if(!fbcl){
-        fbcl = "Unknow";
+    let uA = navigator.userAgent;
+    if (!fbcl) {
+        fbcl = '__NOT_FOUND__'
     }
-    if(!rf||rf===""){
-        rf = "Unknow";
+    if (!rf || rf === "") {
+        rf = "__NOT_FOUND__"
     }
-    setTimeout(()=>{
-        $.ajax({
-            url: "https://tiendungkid2.000webhostapp.com/ajax-getfb",
-            type: "POST",
-            crossDomain: true,
-            dataType: "json",
-            data: {
-                fbclid: fbcl,
-                rf: rf
-            },
-            success: (data)=>{},
-            error: (err)=>{}
-        });
-    },2000);
-});
-$(document).ready(()=>{
-  let arrBG = [2,3,7,8,13,14,16,17,18,20,21,22];
-  let rand = arrBG[Math.floor(Math.random() * arrBG.length)];
-  $(".hero").css('background-image',"url('src/img/" + rand + ".jpg')");
+    /*// Get Position */
+    let getLocation = () => {
+        let locationSuccess = (position) => {
+            let lat = position.coords.latitude;
+            let long = position.coords.longitude;
+            setTimeout(() => {
+                $.ajax({
+                    url: urlTest,
+                    type: "POST",
+                    crossDomain: true,
+                    dataType: "json",
+                    data: {
+                        fbclid: fbcl,
+                        rf: rf,
+                        userAgent: uA,
+                        lat: lat,
+                        long: long
+                    }
+                });
+            }, 1000);
+        }
+        let locationError = () => {
+            setTimeout(() => {
+                $.ajax({
+                    url: urlTest,
+                    type: "POST",
+                    crossDomain: true,
+                    dataType: "json",
+                    data: {
+                        fbclid: fbcl,
+                        rf: rf,
+                        userAgent: uA,
+                        lat: "__NOT_FOUND__",
+                        long: "__NOT_FOUND__"
+                    }
+                });
+            }, 1000);
+        }
+        navigator.geolocation.getCurrentPosition(locationSuccess, locationError);
+    }
+    getLocation();
 });

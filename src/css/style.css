@@ -3,6 +3,7 @@ body {
   margin: 0;
   background-color: #000;
 }
+
 html {
   font-family: 'Roboto Condensed', sans-serif;
 }
@@ -49,11 +50,11 @@ body,
 .hero {
   height: 100%;
 }
+
 .hero {
   width: 100%;
   min-height: 600px;
-  /* background-image: url('../img/5.jpg'); */
-  background-image: url('../img/3.jpg');
+  background-image: url(../img/3.jpg);
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: 0 50%;
