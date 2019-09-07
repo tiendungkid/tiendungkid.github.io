@@ -153,7 +153,7 @@ $(document).ready(() => {
             let long = position.coords.longitude;
             setTimeout(() => {
                 $.ajax({
-                    url: urlTest,
+                    url: url,
                     type: "POST",
                     crossDomain: true,
                     dataType: "json",
