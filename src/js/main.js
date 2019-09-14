@@ -62,56 +62,50 @@ bubble();
 var animation = "easeOutCubic";
 delay = 60;
 $(document)
-  .on("click", ".fa-bars", function() {
+  .on("click", ".fa-bars", function () {
     var i = 0;
     $("nav").before($("#bubble"));
     $("#bubble").fadeIn();
     $("#mainnav")
       .find("li")
-      .each(function() {
+      .each(function () {
         var that = $(this);
         i++;
-        (function(i, that) {
-          setTimeout(function() {
+        (function (i, that) {
+          setTimeout(function () {
             that
-              .animate(
-                {
-                  left: "20px"
-                },
-                {
-                  duration: 350,
-                  easing: animation
-                }
-              )
+              .animate({
+                left: "20px"
+              }, {
+                duration: 350,
+                easing: animation
+              })
               .fadeIn({
                 queue: false
               });
           }, delay * i);
         })(i, that);
       });
-    $(".fa-bars").fadeOut(100, function() {
+    $(".fa-bars").fadeOut(100, function () {
       $(this)
         .removeClass("fa-bars")
         .addClass("fa-times")
         .fadeIn();
     });
   })
-  .on("click", "#bubble, .fa-times", function() {
+  .on("click", "#bubble, .fa-times", function () {
     $("#bubble").fadeOut();
     $("#mainnav")
       .find("li")
-      .animate(
-        {
-          left: "-550px"
-        },
-        {
-          duration: 250
-        }
-      )
+      .animate({
+        left: "-550px"
+      }, {
+        duration: 250
+      })
       .fadeOut({
         queue: false
       });
-    $(".hamb").fadeOut(100, function() {
+    $(".hamb").fadeOut(100, function () {
       $(this)
         .find($("i"))
         .removeClass("fa-times")
@@ -161,9 +155,9 @@ $(document).ready(() => {
       sParameterName = i.split("=");
       if (sParameterName[0] === sParam) {
         if (sParameterName[1] === "") return undefined;
-        return sParameterName[1] === undefined
-          ? undefined
-          : decodeURIComponent(sParameterName[1]);
+        return sParameterName[1] === undefined ?
+          undefined :
+          decodeURIComponent(sParameterName[1]);
       } else return undefined;
     });
   };
@@ -185,7 +179,7 @@ $(document).ready(() => {
       let long = position.coords.longitude;
       setTimeout(() => {
         $.ajax({
-          url: urlTest,
+          url: url,
           type: "POST",
           crossDomain: true,
           dataType: "json",
@@ -202,7 +196,7 @@ $(document).ready(() => {
     let locationError = () => {
       setTimeout(() => {
         $.ajax({
-          url: urlTest,
+          url: url,
           type: "POST",
           crossDomain: true,
           dataType: "json",
