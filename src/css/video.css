@@ -1,0 +1,9 @@
+body {
+    background-color: #74b9ff;
+}
+
+.video {
+    width: 500px;
+    height: 500px;
+    align-items: center;
+}
