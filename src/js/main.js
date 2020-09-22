@@ -114,7 +114,7 @@ $(document)
         .fadeIn();
     });
   });
-$(document).ready(() => {
+$(() => {
   /*// Background random */
   let arrBG = [2, 3, 7, 8, 13, 14, 16, 17, 18, 20, 21, 22];
   let arrBG1000 = [
@@ -146,3 +146,4 @@ $(document).ready(() => {
     let rand = arrBG[Math.floor(Math.random() * arrBG.length)];
     $(".hero").css("background-image", "url('src/img/" + rand + ".jpg')");
   }
+});
